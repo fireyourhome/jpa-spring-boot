@@ -1,0 +1,17 @@
+server:
+  port: 8761
+  context-path: /springboot
+#spring:
+  #profiles:
+    #active: dev
+
+girl:
+  name: 我是女生
+  age: 18
+  content: content:${name},age:${age}
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix:  .jsp

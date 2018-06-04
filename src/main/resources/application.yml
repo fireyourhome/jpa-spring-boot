@@ -1,14 +1,30 @@
 server:
   port: 8761
   context-path: /springboot
+#spring:
+  #profiles:
+    #active: dev
 
-girl:
-  name: 我是女生
-  age: 18
-  content: content:${name},age:${age}
+jpa:
+   hibernate:
+     ddl-auto: create  # 第一次简表create  后面用update
+   show-sql: true
+
 
 spring:
   mvc:
     view:
       prefix: /WEB-INF/views/
       suffix:  .jsp
+  datasource:
+     driver-class-name: com.mysql.jdbc.Driver
+     url: jdbc:mysql://127.0.0.1 :3306/dbgirl?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+     username: root
+     password: fire
+  mail:
+    host: smtp.163.com
+    username: ZH786876474@163.com
+    password: FAN0224
+    port: 25
+    protocol: smtp
+    default-encoding: UTF-8

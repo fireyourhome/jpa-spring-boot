@@ -5,12 +5,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Map;
 
-@Controller
+@RestController
 public class LookWorldController {
 
     @Autowired
@@ -23,7 +24,7 @@ public class LookWorldController {
     @GetMapping(value = "/getGirl")
     @ResponseBody
     public String getGirl(){
-        return  girlProperties.getName()+"  "+girlProperties.getAge();
+        return  girlProperties.getName()+"  "+girlProperties.getAge()+"     ....    "+girlProperties.getContent();
     }
    /* @RequestMapping("/helloto")
     public String helloto(Model m){
@@ -31,8 +32,9 @@ public class LookWorldController {
         return "hello";
     }*/
     @RequestMapping("/test")
-    public String helloto(Map<String, Object> model){
+    public ModelAndView helloto(Map<String, Object> model){
         model.put("now", DateFormat.getDateTimeInstance().format(new Date()));
-        return "hello";
+        ModelAndView mv = new ModelAndView("hello");
+        return mv;
     }
 }
