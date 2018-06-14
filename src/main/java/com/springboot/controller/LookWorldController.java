@@ -1,21 +1,31 @@
 package com.springboot.controller;
 
+import com.springboot.Util.RedisUtils;
 import com.springboot.entity.GirlProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/look")
 public class LookWorldController {
 
     @Autowired
     private GirlProperties girlProperties;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
+
+    @Autowired
+    private RedisUtils redisUtils;
+
     //访问/hello或者/hi任何一个地址，都会返回一样的结果
     @RequestMapping(value = {"/hello","/hi"},method = RequestMethod.GET)
     public String say(){
@@ -36,5 +46,12 @@ public class LookWorldController {
         model.put("now", DateFormat.getDateTimeInstance().format(new Date()));
         ModelAndView mv = new ModelAndView("hello");
         return mv;
+    }
+
+    @RequestMapping("/redistest")
+    public void redisTest(Map<String, Object> model){
+        boolean b = redisUtils.set("jey", "sfs");
+        System.out.println(b);
+
     }
 }

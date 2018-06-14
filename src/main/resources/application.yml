@@ -5,10 +5,10 @@ server:
   #profiles:
     #active: dev
 
-jpa:
-   hibernate:
-     ddl-auto: create  # 第一次简表create  后面用update
-   show-sql: true
+#jpa:
+  # hibernate:
+     #ddl-auto: create  # 第一次简表create  后面用update
+   #show-sql: true
 
 
 spring:
@@ -24,7 +24,25 @@ spring:
   mail:
     host: smtp.163.com
     username: ZH786876474@163.com
-    password: FAN0224
+    password:
     port: 25
     protocol: smtp
     default-encoding: UTF-8
+  redis:
+    host: 192.168.1.100
+    port: 6379
+    database: 1
+    pool:
+      max-wait: -1
+      max-active: 8
+      max-idle: 500
+      min-idle: 0
+    timeout: 0
+
+logging:
+  path: D:\logs
+  level:
+    com:
+      springboot:
+        Dao: DEBUG
+debug: true
