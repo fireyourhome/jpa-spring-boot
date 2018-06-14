@@ -24,8 +24,8 @@ public class AccountController {
         return accountDao.findAll();
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Account getAccountById(@PathVariable("id") int id) {
+    @RequestMapping(value = "/{byid}", method = RequestMethod.GET)
+    public Account getAccountById(int id) {
         return accountDao.findOne(id);
     }
 
