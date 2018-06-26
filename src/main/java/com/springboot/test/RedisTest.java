@@ -8,8 +8,8 @@ public class RedisTest {
 
     public static void main(String[] args){
 
-        Jedis jedis = new Jedis("192.168.1.100",6379);
-        /*System.out.println("Connection to server sucessfully");
+        Jedis jedis = new Jedis("119.3.37.119",6379);
+        System.out.println("Connection to server sucessfully");
         //check whether server is running or not
         System.out.println("Server is running: "+jedis.ping());
         jedis.lpush("forezp-list", "Redis");
@@ -19,7 +19,7 @@ public class RedisTest {
         List<String> list = jedis.lrange("forezp-list", 0 ,5);
         for(int i=0; i<list.size(); i++) {
             System.out.println("Stored string in redis:: "+list.get(i));
-        }*/
+        }
        // jedis.set("name","你爸爸");
         String name = jedis.get("name");
         System.out.println(name);

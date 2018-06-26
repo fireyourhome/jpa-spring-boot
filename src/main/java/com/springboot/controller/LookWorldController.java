@@ -48,10 +48,25 @@ public class LookWorldController {
         return mv;
     }
 
-    @RequestMapping("/redistest")
-    public void redisTest(Map<String, Object> model){
+    @RequestMapping("/redisset")
+    public void redisSet(Map<String, Object> model){
         boolean b = redisUtils.set("jey", "sfs");
+        redisUtils.hmSet("hash","name","test");
         System.out.println(b);
 
     }
+    @RequestMapping("/redisget")
+    public void redistGet(Map<String, Object> model){
+        Object jey = redisUtils.get("jey");
+        Object hmGet = redisUtils.hmGet("hash", "name");
+        System.out.println(jey);
+        System.out.println(hmGet);
+    }
+
+    @RequestMapping("/websocket")
+    public ModelAndView websocket(Map<String, Object> model){
+        ModelAndView mv = new ModelAndView("websocket");
+        return mv;
+    }
+
 }

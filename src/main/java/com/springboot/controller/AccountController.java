@@ -2,11 +2,13 @@ package com.springboot.controller;
 
 
 import com.springboot.Dao.AccountDao;
+import com.springboot.Util.RedisUtils;
 import com.springboot.entity.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by fangzhipeng on 2017/4/20.
@@ -18,6 +20,9 @@ public class AccountController {
 
     @Autowired
     AccountDao accountDao;
+
+    @Autowired
+    private RedisUtils redisUtils;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<Account> getAccounts() {
@@ -53,5 +58,16 @@ public class AccountController {
 
     }
 
+    @RequestMapping("/saveRedisSql")
+    public void saveRedisSql(Map<String, Object> model){
+        List<Account> accountList = accountDao.findAll();
+        redisUtils.set("accountList",accountList);
+    }
 
+    @RequestMapping("/getRedisSql")
+    public Object getRedisSql(Map<String, Object> model){
+        Object accountList = redisUtils.get("accountList");
+        System.out.println(accountList);
+        return accountList;
+    }
 }
